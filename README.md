@@ -1,12 +1,59 @@
-//PROYECTO 01
-//Leer el precio original del producto.
-//Aplicar un descuento al producto si es aplicable (por ejemplo, si el cliente tiene un cup髇 de descuento).
-//Aplicar impuestos al producto (por ejemplo, el IVA u otros impuestos).
-//Si el cliente compra m醩 de un art韈ulo, aplicar un descuento por cantidad.
-//Calcular el costo de env韔 basado en el destino y el peso del paquete.
-//Calcular el costo final del producto sumando el precio con descuento, impuestos, descuento por cantidad y costo de env韔.
-//Mostrar el costo final del producto, desglosando los diferentes componentes (descuentos, impuestos, descuento por cantidad y costo de env韔).
 
+ [UDD] Desarrollo Web Fullstack C13
+
+# Proyecto 01: Algoritmo de Sistema de Costos 
+
+
+# 1. Resumen
+El programa consiste en la selecci贸n de un cat谩logos de productos, el cual se divide en 2 etapas principales:
+
+- Ingreso de datos.
+- Detalles de compra.  
+
+## 1.1 Ingreso de datos
+
+- Mostrar al cliente un cat谩logo de productos disponibles.
+- Solicitar al cliente un producto del cat谩logo.
+- Solicitar al cliente un cup贸n de descuento en caso de tener uno.
+- Solicitar al cliente la cantidad del producto seleccionado.
+- Solicitar al cliente el destino de env铆o.
+
+## 1.2 Detalles de compra
+- Mostrar al cliente los detalles de la compra
+    - Nombre del producto.
+    - Precio original.
+    - Cup贸n de descuento (en caso de que el cliente haya aceptado).
+    - IVA (12%).
+    - Cantidad de unidades del producto.
+    - Peso unitario.
+    - Direcci贸n de env铆o
+
+- Mostrar al cliente el precio final desglosado
+    - Precio Original.
+    - Descuento cup贸n.
+    - Costo IVA.
+    - Descuento por cantidad (si compra es mayor a 1).
+    - Costo env铆o.
+    - Precio Final
+
+# 2. Estructura del Algoritmo
+
+El archivo "Proyecto01.psc" est谩 compuesto por las siguientes estructuras:
+
+- Funci贸n mostrarCatalogo().
+- Funci贸n validarItem().
+- Funci贸n detalleProducto().
+- Funci贸n costoFinal().
+- Algotirmo Principal.
+
+## 2.1 Funci贸n mostrarCatalogo()
+
+- Funci贸n sin retorno.
+- Variables de entrada:
+    - catalogo (arreglo unidimensional tipo Caracter).
+- Muestra en pantalla la selecci贸n de productos disponibles.
+
+```PseInt
 Funcion mostrarCatalogo(catalogo)
 	Escribir " ";
 	Escribir "1: " + catalogo[0];
@@ -16,7 +63,17 @@ Funcion mostrarCatalogo(catalogo)
 	Escribir "5: " + catalogo[4];
 	Escribir " ";
 FinFuncion
+```
+## 2.2 Funci贸n validarItem()
 
+- Funci贸n con retorno: 1 o 0.
+- Variables de entrada:
+    - item (Entero).
+- Verifica que el n煤mero ingresado corresponde al cat谩logo de productos (1 a 5).
+- Si el n煤mero ingresado corresponde al rango del cat谩logo, la funci贸n retorna 1.
+- Si el n煤mero ingresado no corresponde al rango del cat谩logo, la funci贸n retorna 0.
+
+```PseInt
 Funcion validar <- validarItem(item)
 	Si item >= 1 & item <= 5
 		validar <- 1;
@@ -24,7 +81,33 @@ Funcion validar <- validarItem(item)
 		validar <- 0;
 	FinSi
 FinFuncion
+```
 
+## 2.3 Funci贸n detalleProducto()
+
+- Funci贸n sin retorno.
+- Variables de entrada: 
+    - catalogo (arreglo unidimensional tipo Caracter).
+    - item (Entero).
+    - precio (arreglo unidimensional tipo Real).
+    - cupon (Caracter).
+    - descuentoCantidad (Entero).
+    - iva (Real).
+    - cantidad (Entero).
+    - peso (arreglo unidimensional tipo Real).
+    - costoFijo (Real).
+    - costoKilo (Real).
+    - costoEnvio (Real).
+    - destino (Caracter).
+- Muestra el nombre del producto.
+- Muestra el precio original.
+- Muestra cup贸n de descuento si el cliente lo seleccion贸.
+- Muestra valor IVA.
+- Muestra la cantidad de unidades.
+- Muestra el peso unitario.
+- Muestra el destino de env铆o.
+
+```PseInt
 Funcion detalleProducto(catalogo,item,precio,cupon,descuentoCantidad,iva,cantidad,peso,costoFijo,costoKilo,costoEnvio,destino)
 	Escribir "Detalles de la compra";
 	Escribir "---------------------";
@@ -46,7 +129,35 @@ Funcion detalleProducto(catalogo,item,precio,cupon,descuentoCantidad,iva,cantida
 	//Mostrar Destino
 	Escribir "Destino: " + destino;
 FinFuncion
+```
 
+## 2.4 costoFinal()
+
+- Funci贸n sin retorno.
+- Variables de entrada: 
+    - item (Entero).
+    - precio (arreglo unidimensional tipo Real).
+    - cupon (Caracter).
+    - descuentoCantidad (Entero).
+    - iva (Real).
+    - cantidad (Entero).
+    - peso (arreglo unidimensional tipo Real).
+    - costoFijo (Real).
+    - costoKilo (Real).
+    - costoEnvio (Real).
+    - destino (Caracter).
+- Muestra el precio original.
+- Calcula y muestra Descuento Cup贸n (si cliente lo seleccion贸).
+- Calcula y muestra Costo IVA.
+- Calcula y muestra Descuento por Cantidad (si cantidad > 1).
+- Calcula y muestra Costo de Env铆o.
+- Calcula y muestra Precio Final.
+
+El desglose de c谩lculo se muestra en pantalla mediante:
+- Casteo de variables a tipo Caracter.
+- Concatenaci贸n de variables tipo Caracter.
+
+```
 Funcion costoFinal(item,precio,cupon,descuentoCantidad,iva,cantidad,peso,costoFijo,costoKilo,costoEnvio,destino)
 	definir aux Como Real; // variable auxiliar (temporal). Se utiliza para ir guardando el precio antes de un descuento o cargo
 	Escribir " ";
@@ -86,7 +197,24 @@ Funcion costoFinal(item,precio,cupon,descuentoCantidad,iva,cantidad,peso,costoFi
 	precioFinal = precioFinal + costoEnvio;
 	Escribir "Precio Final: $" + ConvertirATexto(aux) +" + $" +ConvertirATexto(costoEnvio) + " = " + ConvertirATexto(precioFinal);
 FinFuncion
+```
 
+## 2.5 Algoritmo Principal
+
+- Muestra cat谩logo de productos --> mostrarCatalogo().
+- Inicia Bucle. 
+    - Solicita ingresar un producto.
+    - Verifica si el producto ingresado es correcto --> validarItem().
+    - Solicita cup贸n de descuento en caso de tener.
+    - Solicita la cantidad del mismo producto.
+    - Solicita el destino de env铆o.
+    - Muestra el detalle del producto --> detalleProducto().
+    - Muestra el costo final desglosado --> costoFinal().
+    - Solicita continuar o no comprando (seguir o salir del bucle).
+- Fin Bucle. 
+- Fin Programa.
+
+```PSeInt
 Proceso Proyecto01
 	Definir item Como Entero;
 	Definir validar Como Entero;
@@ -144,7 +272,7 @@ Proceso Proyecto01
 		validar <- validarItem(item);
 		
 		Si validar == 1
-			Escribir sin saltar "縋osee cupon de descuento? (s/n): ";
+			Escribir sin saltar "驴Posee cupon de descuento? (s/n): ";
 			Leer cupon;
 			
 			Escribir sin saltar "Ingrese la cantidad que desea comprar: ";
@@ -161,8 +289,9 @@ Proceso Proyecto01
 		FinSi
 		
 		Escribir " ";
-		Escribir Sin Saltar "緿esea seleccionar otro producto? (s/n)";
+		Escribir Sin Saltar "驴Desea seleccionar otro producto? (s/n)";
 		Leer continuar;
 	Hasta Que (continuar = "n") | (continuar = "N")
 	
 FinProceso
+```
